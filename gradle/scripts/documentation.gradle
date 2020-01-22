@@ -1,0 +1,8 @@
+dependencies {
+    implementation(
+            // swagger
+            "io.springfox:springfox-swagger2:${springfoxVersion}",
+            "io.springfox:springfox-swagger-ui:${springfoxVersion}",
+            "io.springfox:springfox-bean-validators:${springfoxVersion}",
+    )
+}

@@ -1,0 +1,20 @@
+---
+spring:
+  application:
+    name: jj-barca-bot
+    title: JJ's Barca Bot
+    description: Bot to supply news, info about Barca in the Telegram app
+
+management:
+  endpoint:
+    health:
+      show-details: never
+
+  endpoints:
+    web:
+      exposure:
+        include: refresh, info, health, loggers
+    enabled-by-default: true
+
+server:
+  port: ${PORT:8080}

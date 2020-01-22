@@ -1,0 +1,25 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.4.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+	id "com.gradle.build-scan" version "2.4.2"
+	id 'io.freefair.lombok' version '4.0.0'
+	id "fr.brouillard.oss.gradle.jgitver" version "0.9.1"
+	id 'com.diffplug.gradle.spotless' version '3.24.2'
+	id 'idea'
+}
+
+group = 'com.jj.barcabot'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
+
+repositories {
+	mavenCentral()
+}
+
+apply from: 'gradle/scripts/spring.gradle'
+apply from: 'gradle/scripts/documentation.gradle'
+apply from: 'gradle/scripts/tools.gradle'
+apply from: 'gradle/scripts/test.gradle'
+apply from: 'gradle/scripts/idea.gradle'

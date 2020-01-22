@@ -1,0 +1,76 @@
+ext['junit-jupiter.version'] = '5.5.1'
+
+dependencies {
+    testCompile(
+            "io.rest-assured:rest-assured-all:${restAssuredVersion}",
+
+            'org.hamcrest:hamcrest-all:1.3',
+            "org.mockito:mockito-core:${mockitoVersion}",
+            "org.mockito:mockito-junit-jupiter:${mockitoVersion}",
+            "org.mockito:mockito-inline:${mockitoVersion}",
+            
+            'net.bytebuddy:byte-buddy:1.9.10',
+            'net.bytebuddy:byte-buddy-agent:1.9.10',
+            'org.objenesis:objenesis:2.6',
+            'info.solidsoft.mockito:mockito-java8:2.5.0',
+    )
+
+    testImplementation('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+    }
+
+    testImplementation(
+            "io.rest-assured:spring-mock-mvc:${restAssuredVersion}"
+    )
+}
+
+test {
+    description = 'Runs all integration and unit tests.'
+
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    reports {
+        html.enabled = true
+    }
+}
+
+task integrationTest(type: Test) {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = 'Runs all integration tests.'
+    maxHeapSize = '1024m'
+
+    useJUnitPlatform()
+
+    exclude '**/*Test.class'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    reports {
+        html.enabled = true
+    }
+}
+
+task unitTest(type: Test) {
+    group = LifecycleBasePlugin.VERIFICATION_GROUP
+    description = 'Runs all unit tests.'
+    maxHeapSize = '1024m'
+
+    useJUnitPlatform()
+
+    exclude '**/*It.class'
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+
+    reports {
+        html.enabled = true
+    }
+}
+
