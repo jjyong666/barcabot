@@ -1,0 +1,7 @@
+telegram:
+  api:
+    creator-id: ${TELEGRAM_CREATOR_ID}
+    bot:
+      username: jj_barca_bot
+      token: ${BARCA_BOT_TOKEN}
+      path:
