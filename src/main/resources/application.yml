@@ -7,6 +7,50 @@ telegram:
       path:
 
 
+football:
+  season: 2019
+  football-data:
+    base-url: api.football-data.org
+    token: ${FOOTBALL_DATA_TOKEN}
+    header:
+      token: X-Auth-Token
+      client: X-Authenticated-Client
+      seconds-reset-counter: X-RequestCounter-Reset
+      requests-left: X-Requests-Available-Minute
+    filter:
+      dateFrom: dateFrom
+      dateTo: dateTo
+      competitions-ids: competitions
+      limit: limit
+    endpoint:
+      areas: /v2/areas/
+      matches: /v2/matches
+      competition:
+        endpoint: /v2/competitions/
+        standings: /v2/competitions/{id}/standings
+        scorers: /v2/competitions/{id}/scorers
+        teams: /v2/competitions/{id}/teams?season=${football.season}
+        favorite:
+          la-liga: 2014
+          copa: 2079
+          supercopa: 2078
+          premier: 2021
+          facup: 2055
+          cup: 2139
+          community-shield: 2056
+          champions: CL
+      team:
+        endpoint: /v2/teams/{id}
+        matches: /v2/teams/{id}/matches
+        favorite:
+          barca: 81
+          city: 65
+      player:
+        endpoint: /v2/players/{id}
+        favorite:
+          messi: 3218
+
+
 httppool:
   maxPerRoute: ${HTTP_POOL_ROUTE:20}
   maxTotal: ${HTTP_POOL_MAX:30}
