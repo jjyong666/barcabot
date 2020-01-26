@@ -31,8 +31,8 @@ public class RequestHeadersInterceptor implements ClientHttpRequestInterceptor {
   public ClientHttpResponse intercept(@NonNull HttpRequest clientRequest, @NonNull byte[] body, ClientHttpRequestExecution execution)
       throws IOException {
 
-    setHeaderOnMissing(clientRequest, "Accept", MediaType.APPLICATION_JSON_UTF8_VALUE);
-    setHeaderOnMissing(clientRequest, "Content-Type", MediaType.APPLICATION_JSON_UTF8_VALUE);
+    setHeaderOnMissing(clientRequest, "Accept", MediaType.APPLICATION_JSON_VALUE);
+    setHeaderOnMissing(clientRequest, "Content-Type", MediaType.APPLICATION_JSON_VALUE);
 
     setHeader(clientRequest, TRACE_ID_HEADER, getHeaderFromRequest(TRACE_ID_HEADER));
 
