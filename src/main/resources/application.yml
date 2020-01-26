@@ -5,3 +5,12 @@ telegram:
       username: jj_barca_bot
       token: ${BARCA_BOT_TOKEN}
       path:
+
+
+httppool:
+  maxPerRoute: ${HTTP_POOL_ROUTE:20}
+  maxTotal: ${HTTP_POOL_MAX:30}
+  connectionRequestTimeout: 300
+  connectTimeout: 5000
+  socketTimeout: 5000
+
