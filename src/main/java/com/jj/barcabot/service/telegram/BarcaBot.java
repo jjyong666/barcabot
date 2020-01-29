@@ -14,7 +14,7 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Log4j2
 @Component
 @RequiredArgsConstructor
-public class BarcaBot extends TelegramLongPollingBot {
+public class BarcaBot extends TelegramLongPollingBot implements MessageSender {
 
   private final BarcaBotConfig config;
 
@@ -48,20 +48,21 @@ public class BarcaBot extends TelegramLongPollingBot {
     }
   }
 
-  private Long getChatId(Update update) {
-    return update.getMessage().getChatId();
+  private String getChatId(Update update) {
+    return update.getMessage().getChatId().toString();
   }
 
   private String getText(Update update) {
     return update.getMessage().getText();
   }
 
+  @Override
   @SneakyThrows
-  private synchronized void sendMessage(long chatId, String text) {
+  public synchronized void sendMessage(String chatId, String text) {
     execute(buildMessage(chatId, text));
   }
 
-  private SendMessage buildMessage(long chatId, String text) {
+  private SendMessage buildMessage(String chatId, String text) {
     SendMessage message = new SendMessage();
     message.enableMarkdownV2(true);
     message.setChatId(chatId);
