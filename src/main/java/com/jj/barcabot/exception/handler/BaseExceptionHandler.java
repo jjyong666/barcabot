@@ -8,6 +8,7 @@ import com.jj.barcabot.exception.dto.ErrorObject;
 import com.jj.barcabot.exception.dto.ErrorResponse;
 import java.time.Instant;
 import java.util.Optional;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -16,16 +17,19 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
+@Log4j2
 @ControllerAdvice
 public class BaseExceptionHandler extends ResponseEntityExceptionHandler {
 
   @ExceptionHandler(AbstractRuntimeException.class)
   public ResponseEntity<ErrorResponse> handleGravityException(WebRequest webRequest, AbstractRuntimeException exception) {
+    log.error(exception);
     return new ResponseEntity<>(createErrorResponse(webRequest, exception), exception.getStatus());
   }
 
   @ExceptionHandler(Throwable.class)
   public ResponseEntity<ErrorResponse> handleThrowable(WebRequest webRequest, Throwable throwable) {
+    log.error(throwable);
     return new ResponseEntity<>(createErrorResponse(webRequest, mapAbstractRuntimeException(throwable)), HttpStatus.INTERNAL_SERVER_ERROR);
   }
 
