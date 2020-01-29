@@ -48,7 +48,7 @@ public class FootballDataServiceImpl implements FootballDataService {
   private MultiValueMap<String, String> getQueryParams() {
     MultiValueMap<String, String> queryParams = new LinkedMultiValueMap<>();
     queryParams.add(config.getFilter().getDateFrom(), LocalDate.now().toString());
-    queryParams.add(config.getFilter().getDateTo(), LocalDate.now().plusDays(7).toString());
+    queryParams.add(config.getFilter().getDateTo(), LocalDate.now().plusWeeks(3).toString());
     return queryParams;
   }
 
