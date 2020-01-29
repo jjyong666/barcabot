@@ -1,6 +1,9 @@
 telegram:
   api:
     creator-id: ${TELEGRAM_CREATOR_ID}
+    bot-id: 641432219
+    channel-id: "@barca_hav"
+    message-width: 55
     bot:
       username: jj_barca_bot
       token: ${BARCA_BOT_TOKEN}
