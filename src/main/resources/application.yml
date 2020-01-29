@@ -52,6 +52,8 @@ football:
         endpoint: /v2/players/{id}
         favorite:
           messi: 3218
+    task:
+      games: '0 12 9 */1 * *'
 
 
 httppool:
