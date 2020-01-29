@@ -1,12 +1,14 @@
 dependencies {
     implementation(
             'com.google.guava:guava:25.0-jre',
+
             // Logstash
             'biz.paluch.logging:logstash-gelf:1.11.1',
             'net.logstash.logback:logstash-logback-encoder:5.1',
             // jackson
             'com.fasterxml.jackson.core:jackson-databind:2.9.6',
             'com.fasterxml.jackson.jaxrs:jackson-jaxrs-json-provider:2.7.0',
+            'org.apache.commons:commons-lang3:3.9',
     )
 
     compileOnly(
