@@ -1,12 +1,11 @@
 telegram:
   api:
     creator-id: ${TELEGRAM_CREATOR_ID}
-    bot-id: 641432219
-    channel-id: "@barca_hav"
-    message-width: 55
+    channel-id: ${TELEGRAM_CHANNEL_ID}
     bot:
-      username: jj_barca_bot
-      token: ${BARCA_BOT_TOKEN}
+      id: ${BOT_ID}
+      username: ${BOT_USERNAME}
+      token: ${BOT_TOKEN}
       path:
 
 

@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 public class TelegramConfig {
 
   private String creatorId;
-  private String botId;
   private String channelId;
 
 }

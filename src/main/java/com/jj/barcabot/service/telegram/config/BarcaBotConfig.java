@@ -9,6 +9,7 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties("telegram.api.bot")
 public class BarcaBotConfig {
 
+  private String id;
   private String username;
   private String token;
   private String path;
