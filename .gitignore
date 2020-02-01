@@ -34,3 +34,5 @@ out/
 jj_barca_bot
 
 *.env
+
+bin/
