@@ -36,3 +36,7 @@ jj_barca_bot
 *.env
 
 bin/
+
+temp.png
+
+temp.webp
