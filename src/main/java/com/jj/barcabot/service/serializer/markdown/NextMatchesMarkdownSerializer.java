@@ -15,7 +15,7 @@ import net.steppschuh.markdowngenerator.text.code.CodeBlock;
 import net.steppschuh.markdowngenerator.text.emphasis.BoldText;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service("nextMatchesMarkdownSerializer")
 @RequiredArgsConstructor
 public class NextMatchesMarkdownSerializer implements NextMatchesSerializer {
 
