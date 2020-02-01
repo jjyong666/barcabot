@@ -9,12 +9,13 @@ import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
+import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Log4j2
 @Component
 @RequiredArgsConstructor
-public class BarcaBot extends TelegramLongPollingBot implements MessageSender {
+public class BarcaBot extends TelegramLongPollingBot implements TelegramSender {
 
   private final BarcaBotConfig config;
 
@@ -43,31 +44,19 @@ public class BarcaBot extends TelegramLongPollingBot implements MessageSender {
   }
 
   private void processUpdate(Update update) {
-    if (update.hasMessage() && update.getMessage().hasText()) {
-      sendMessage(getChatId(update), getText(update));
-    }
-  }
-
-  private String getChatId(Update update) {
-    return update.getMessage().getChatId().toString();
-  }
-
-  private String getText(Update update) {
-    return update.getMessage().getText();
+    log.debug("Update received: {}", update);
   }
 
   @Override
   @SneakyThrows
-  public synchronized void sendMessage(String chatId, String text) {
-    execute(buildMessage(chatId, text));
+  public synchronized void send(SendPhoto photo) {
+    execute(photo);
   }
 
-  private SendMessage buildMessage(String chatId, String text) {
-    SendMessage message = new SendMessage();
-    message.enableMarkdownV2(true);
-    message.setChatId(chatId);
-    message.setText(text);
-    return message;
+  @Override
+  @SneakyThrows
+  public synchronized void send(SendMessage message) {
+    execute(message);
   }
 
 
