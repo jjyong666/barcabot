@@ -32,3 +32,5 @@ out/
 .vscode/
 
 jj_barca_bot
+
+*.env
