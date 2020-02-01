@@ -19,6 +19,9 @@ repositories {
     maven {
         url "http://dl.bintray.com/steppschuh/Markdown-Generator"
     }
+    maven {
+        url "https://repo.spring.io/plugins-release"
+    }
 }
 
 apply from: 'gradle/scripts/spring.gradle'
