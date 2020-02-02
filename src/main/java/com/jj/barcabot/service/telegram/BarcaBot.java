@@ -38,7 +38,6 @@ public class BarcaBot extends TelegramLongPollingBot implements TelegramSender {
   }
 
   @Override
-  @SneakyThrows
   public void onUpdateReceived(Update update) {
     processUpdate(update);
   }
