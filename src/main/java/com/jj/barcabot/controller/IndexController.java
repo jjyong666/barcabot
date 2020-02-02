@@ -2,6 +2,7 @@ package com.jj.barcabot.controller;
 
 import com.jj.barcabot.service.football.NextGamesService;
 import com.jj.barcabot.service.football.footballdata.FootballDataService;
+import com.jj.barcabot.service.telegram.sender.ImageSender;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ public class IndexController {
 
   private final FootballDataService service;
   private final NextGamesService service2;
+  private final ImageSender imageSender;
 
   @GetMapping("/players/{id}")
   public ResponseEntity<?> index(@PathVariable String id) {
@@ -24,7 +26,7 @@ public class IndexController {
 
   @GetMapping("/matches")
   public void index() {
-    service2.publishNextGames();
+    imageSender.fromHtml(service2.getNextMatchesHtml());
   }
 
 }
