@@ -7,7 +7,9 @@ import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
+import org.telegram.telegrambots.bots.TelegramWebhookBot;
 import org.telegram.telegrambots.meta.TelegramBotsApi;
+import org.telegram.telegrambots.meta.api.methods.BotApiMethod;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.methods.send.SendPhoto;
 import org.telegram.telegrambots.meta.api.objects.Update;
@@ -15,9 +17,15 @@ import org.telegram.telegrambots.meta.api.objects.Update;
 @Log4j2
 @Component
 @RequiredArgsConstructor
-public class BarcaBot extends TelegramLongPollingBot implements TelegramSender {
+public class BarcaBot extends TelegramWebhookBot implements TelegramSender {
 
   private final BarcaBotConfig config;
+
+  @Override
+  public BotApiMethod onWebhookUpdateReceived(Update update) {
+    log.info("Update: {}", update);
+    return null;
+  }
 
   @Override
   public String getBotUsername() {
@@ -29,6 +37,11 @@ public class BarcaBot extends TelegramLongPollingBot implements TelegramSender {
     return config.getToken();
   }
 
+  @Override
+  public String getBotPath() {
+    return "/updates/" + config.getToken();
+  }
+
   @SneakyThrows
   @PostConstruct
   public void registerBot() {
@@ -37,7 +50,6 @@ public class BarcaBot extends TelegramLongPollingBot implements TelegramSender {
     botsApi.registerBot(this);
   }
 
-  @Override
   public void onUpdateReceived(Update update) {
     processUpdate(update);
   }
